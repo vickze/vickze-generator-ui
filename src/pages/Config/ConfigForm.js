@@ -190,14 +190,14 @@ class ConfigForm extends PureComponent {
             <FormItem
               {...formItemLayout}
               label={<FormattedMessage id="app.config.type" />}
-              help={<FormattedMessage id="app.config.type.help" />}
+              //help={<FormattedMessage id="app.config.type.help" />}
             >
               {getFieldDecorator('type', {
-                initialValue: data.type || '0',
+                initialValue: data.type || 0,
               })(
                 <Radio.Group>
-                  <Radio value="0">properties</Radio>
-                  <Radio value="1">yml</Radio>
+                  <Radio value={0}>properties</Radio>
+                  <Radio value={1}>yaml</Radio>
                 </Radio.Group>
               )}
             </FormItem>

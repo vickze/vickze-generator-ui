@@ -202,14 +202,14 @@ class TemplateForm extends PureComponent {
             <FormItem
               {...formItemLayout}
               label={<FormattedMessage id="app.template.type" />}
-              help={<FormattedMessage id="app.template.type.help" />}
+              //help={<FormattedMessage id="app.template.type.help" />}
             >
               {getFieldDecorator('type', {
-                initialValue: data.type || '0',
+                initialValue: data.type || 0,
               })(
                 <Radio.Group>
-                  <Radio value="0">Velocity</Radio>
-                  <Radio value="1">Freemarker</Radio>
+                  <Radio value={0}>Velocity</Radio>
+                  <Radio value={1}>Freemarker</Radio>
                 </Radio.Group>
               )}
             </FormItem>
