@@ -1,5 +1,5 @@
 import { stringify } from 'qs';
-import { fakeAccountLogin, getFakeCaptcha, createToken, validateToken, deleteToken } from '@/services/api';
+import { getFakeCaptcha, createToken, validateToken, deleteToken } from '@/services/api';
 import { setAuthority, clearAuthority } from '@/utils/authority';
 import { setToken, getToken, clearToken } from '@/utils/token';
 import { ssoLogin, ssoLogout } from '@/utils/sso';
@@ -84,7 +84,6 @@ export default {
     },
     *logout({ payload = {} }, { call, put }) {
       const token = getToken();
-      console.log(token);
       //reducer同步
       yield put({
         type: 'changeLoginStatus',

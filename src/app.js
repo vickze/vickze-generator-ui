@@ -20,7 +20,6 @@ export function render(oldRender) {
       oldRender();
     } else {
       window.addEventListener("message", () => {
-        console.log(event.origin);
         if (urlOriginCompare(event.origin, SSO)) {
           setToken(event.data.token)
           //给父窗口发送消息跳转
