@@ -231,6 +231,12 @@ export async function createToken(params) {
   });
 }
 
+export async function validateToken() {
+  return request(`/api/auth/token/validate`, {
+    method: 'GET',
+  });
+}
+
 export async function deleteToken(token) {
   return request(`/api/auth/token`, {
     method: 'DELETE',

@@ -10,6 +10,8 @@ import {
 import { formatMessage, FormattedMessage } from 'umi/locale';
 import { setAuthority, clearAuthority } from '@/utils/authority';
 import { getToken } from '@/utils/token';
+import { ssoLogin } from '@/utils/sso';
+import { getPageQuery } from '@/utils/utils';
 import router from 'umi/router';
 import { reloadAuthorized } from '@/utils/Authorized';
 
@@ -32,14 +34,34 @@ export default {
   },
 
   effects: {
-    *fetchCurrent(_, { call, put }) {
+    *fetchCurrent({ callback }, { call, put }) {
       const token = getToken();
+
       if (!token) {
-        router.push('/login');
+        if (SSO) {
+          ssoLogin(window.location.href);
+        } else {
+          router.replace({
+            pathname: '/login',
+            query: {
+              redirect: window.location.href,
+            },
+          })
+        }
+        return;
       }
       const response = yield call(queryCurrentUser);
       if (!response.permissions) {
-        router.push('/login');
+        if (SSO) {
+          ssoLogin(window.location.href);
+        } else {
+          router.replace({
+            pathname: '/login',
+            query: {
+              redirect: window.location.href,
+            },
+          })
+        }
       }
       setAuthority(response.permissions);
       reloadAuthorized();
@@ -47,6 +69,7 @@ export default {
         type: 'saveCurrentUser',
         payload: response,
       });
+      callback(response);
     },
   },
 

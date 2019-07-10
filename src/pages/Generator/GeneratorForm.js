@@ -28,6 +28,8 @@ import {
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import { getOrder } from '@/utils/utils';
 import styles from '@/pages/TableList.less';
+import debounce from "lodash/debounce";
+
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -43,6 +45,13 @@ const { Option } = Select;
 }))
 @Form.create()
 class GeneratorForm extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.handleSearchGenerator = debounce(this.handleFocusGenerator, 600);
+    this.handleSearchConfig = debounce(this.handleFocusConfig, 600);
+    this.handleSearchTemplate = debounce(this.handleFocusTemplate, 600);
+  }
+
   state = {
     //选择的数据库表
     selectedRows: [],
@@ -76,7 +85,7 @@ class GeneratorForm extends PureComponent {
     });
   };
 
-  handleSearchGenerator = value => {
+  handleFocusGenerator = value => {
     const { dispatch, generator } = this.props;
     this.setState({
       offset: 0,
@@ -124,7 +133,7 @@ class GeneratorForm extends PureComponent {
     }
   };
 
-  handleSearchConfig = value => {
+  handleFocusConfig = value => {
     const { dispatch, config } = this.props;
     this.setState({
       offset: 0,
@@ -166,7 +175,7 @@ class GeneratorForm extends PureComponent {
     }
   };
 
-  handleSearchTemplate = value => {
+  handleFocusTemplate = value => {
     const { dispatch, template } = this.props;
     this.setState({
       offset: 0,
@@ -275,7 +284,7 @@ class GeneratorForm extends PureComponent {
                   loading={generatorLoading}
                   filterOption={false}
                   onSearch={this.handleSearchGenerator}
-                  onFocus={this.handleSearchGenerator}
+                  onFocus={this.handleFocusGenerator}
                   onBlur={this.handleBlur}
                   style={{ width: '100%' }}
                   onPopupScroll={this.handlePopupScrollGenerator}
@@ -307,7 +316,7 @@ class GeneratorForm extends PureComponent {
                   loading={configLoading}
                   filterOption={false}
                   onSearch={this.handleSearchConfig}
-                  onFocus={this.handleSearchConfig}
+                  onFocus={this.handleFocusConfig}
                   style={{ width: '100%' }}
                   onPopupScroll={this.handlePopupScrollConfig}
                   dropdownRender={menu => (
@@ -341,7 +350,7 @@ class GeneratorForm extends PureComponent {
                   loading={templateLoading}
                   filterOption={false}
                   onSearch={this.handleSearchTemplate}
-                  onFocus={this.handleSearchTemplate}
+                  onFocus={this.handleFocusTemplate}
                   style={{ width: '100%' }}
                   onPopupScroll={this.handlePopupScrollTemplate}
                   dropdownRender={menu => (

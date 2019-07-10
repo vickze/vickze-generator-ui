@@ -74,7 +74,7 @@ class ConfigProfile extends Component {
             width="100%"
             height="600"
             options={options}
-            language="plaintext"
+            language="yaml"
             theme="vs-dark"
           />
           {/* <pre
