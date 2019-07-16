@@ -109,7 +109,7 @@ export async function queryCurrentUser() {
 }
 
 export async function createToken(params) {
-  return request(`/api/auth/token`, {
+  return request(`/api/auth/user/token`, {
     method: 'POST',
     data: params,
   });
