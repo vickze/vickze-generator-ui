@@ -120,7 +120,7 @@ class TemplateForm extends PureComponent {
     return (
       <PageHeaderWrapper
         title={
-          !id || !duplicate ? (
+          !id && duplicate ? (
             <FormattedMessage id="app.template.add.title" />
           ) : (
             <FormattedMessage id="app.template.edit.title" />

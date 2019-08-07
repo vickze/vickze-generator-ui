@@ -121,7 +121,7 @@ class ConfigForm extends PureComponent {
     return (
       <PageHeaderWrapper
         title={
-          !id ? (
+          !id || duplicate ? (
             <FormattedMessage id="app.config.add.title" />
           ) : (
             <FormattedMessage id="app.config.edit.title" />

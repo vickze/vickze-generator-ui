@@ -62,12 +62,14 @@ export default [
                 name: 'configForm',
                 component: './Config/ConfigForm',
                 hideInMenu: true,
+                inherited: true,  // 面包屑隐藏，否则面包屑显示 首页/XX/XX/XX
               },
               {
                 path: '/config/config-form/:duplicate/:id',
                 name: 'configForm',
                 component: './Config/ConfigForm',
                 hideInMenu: true,
+                inherited: true,  // 面包屑隐藏，否则面包屑显示 首页/XX/XX/XX
               },
               {
                 path: '/config/config-profile/:id',
@@ -98,12 +100,14 @@ export default [
                 name: 'templateForm',
                 component: './Template/TemplateForm',
                 hideInMenu: true,
+                inherited: true,  // 面包屑隐藏，否则面包屑显示 首页/XX/XX/XX
               },
               {
                 path: '/template/template-form/:duplicate/:id',
                 name: 'templateForm',
                 component: './Template/TemplateForm',
                 hideInMenu: true,
+                inherited: true,  // 面包屑隐藏，否则面包屑显示 首页/XX/XX/XX
               },
               {
                 path: '/template/template-profile/:id',
